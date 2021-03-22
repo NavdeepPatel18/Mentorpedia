@@ -28,7 +28,7 @@ function SearchBox(props) {
         </div>
       </div>
       <div className="show">
-        <div className="show_result">navdeep</div>
+        <div className="show_result">Search data shown hear</div>
       </div>
     </div>
   );

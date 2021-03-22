@@ -6,6 +6,7 @@
 
 body {
     font-family: sans-serif;
+    height: auto;
 }
 
 .home {
@@ -17,12 +18,13 @@ body {
     background-image: url("../components/Assets/Logo3.png");
     background-repeat: no-repeat;
     background-position: top;
-    background-color: #ff8918;
+    /* background-color: #ff8918; */
 }
 
 .home__container {
     width: 700px;
     margin: 0 auto;
+    position: relative;
 }
 
 .home_grid_margin {

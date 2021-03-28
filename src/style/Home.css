@@ -68,3 +68,10 @@ body {
     cursor: pointer;
     border-radius: 3px;
 }
+
+.inputs {
+    height:45;
+    margin-left:16;
+    border-bottom-color: '#FFFFFF';
+    flex:1;
+}

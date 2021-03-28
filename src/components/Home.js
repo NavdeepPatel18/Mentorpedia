@@ -3,32 +3,50 @@ import Footer from "./FooterSmall";
 import "../style/Home.css";
 
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import { Search, Grid, Header, Segment, Button } from "semantic-ui-react";
 
-class Home extends Component {
-  
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
-  componentDidMount() {
-    fetch("http://localhost:3001/users", {
-      method: "GET",
-      // mode: "no-cors",
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      data: {},
+      search: null,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  CheckLogin = () => {
+    return fetch("http://localhost:3001/search/my_test_search/_doc?q=sm", {
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": "http://localhost:3000",
-        // "Access-Control-Allow-Credentials": "true",
-        // "Access-Control-Allow-Methods":"GET,POST,OPTIONS",
-        // "Access-Control-Allow-Headers" : "Origin, Content-Type, Accept",
       },
     })
-      .then((res) => res.json())
+      .then((response) => response.json())
       .then(
         (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result.faculty,
-          });
+          if(result){
+            this.setState({
+              isLoaded: true,
+              data: result,
+            });
+          }
+          else{
+            this.setState({
+              isLoaded: false,
+              data: null,
+            });
+          }
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -39,45 +57,65 @@ class Home extends Component {
             error,
           });
         }
-      );
+      )
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  handleChange(event) {
+    this.setState({ search: event.target.search });
+  }
+
+  handleSubmit(event) {
+    event.CheckLogin();
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, data } = this.state;
 
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
-      return (
-        <div className="home">
-          <div className="home__container">
-            <div className="home_grid_margin">
-              <Grid>
-                <Grid.Column width={6} className="home_grid_col_margin">
-                  <Search fluid />
-                  <div className="home__group">
-                    <Link to="/search">
-                      <Button>Search</Button>
-                      {/* <input type="button" className="home__btn" value="Search" /> */}
-                    </Link>
-                  </div>
-                </Grid.Column>
-              </Grid>
-            </div>
-          </div>
-          <div>
-            {" "}
-            <ul>
-              {items.map((item) => (
-                <li>{item.name}</li>
-              ))}
-            </ul>{" "}
+    return (
+      <div className="home">
+        <div className="home__container">
+          <div className="home_grid_margin">
+            <Grid>
+              <Grid.Column width={6} className="home_grid_col_margin">
+                <form onSubmit={this.handleSubmit}>
+                  <label>
+                    <input
+                      type="text"
+                      value={this.state.search}
+                      onChange={this.handleChange}
+                    />
+                  </label>
+                  {/* <input
+                    type="submit"
+                    value="Submit"
+                    // onPress={this.CheckLogin}
+                  /> */}
+
+                  <Link to="/search" className="btn btn-primary">
+                    Search
+                  </Link>
+                </form>
+              </Grid.Column>
+            </Grid>
           </div>
         </div>
-      );
-    }
+        {/* <div>
+          {" "}
+          <ul>
+            {data.map((item) => (
+              <li>
+                {item.hits[0]._source.name} {item.hits[0]._source.dept}{" "}
+                {item.hits[0]._source.collage} {item.hits[0]._source.research_areas/2}
+              </li>
+            ))}
+          </ul>{" "}
+          {this.state.data}
+        </div> */}
+      </div>
+    );
   }
 }
 

@@ -1,68 +1,118 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-    font-family: sans-serif;
+	font-family: sans-serif;
 }
 
 .home {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url("../components/Assets/Logo3.png");
-    background-repeat: no-repeat;
-    background-position: top;
-    background-color: #ff8918;
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background-repeat: no-repeat;
+	background-position: top;
+	/* background-color: #ff8918; */
+	background: #00c9ff; /* fallback for old browsers */
+	background: -webkit-linear-gradient(
+		to right,
+		#92fe9d,
+		#00c9ff
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to right,
+		#92fe9d,
+		#00c9ff
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	/* background-image: url("../components/Assets/Logo3.png"); */
 }
 
 .home__container {
-    width: 700px;
-    margin: 0 auto;
+	justify-content: center;
+	align-items: center;
+	width: 700px;
+	margin: 0 auto;
 }
 
 .home_grid_margin {
-    margin-top: 200px;
+	margin-top: 200px;
 }
 
 .home_grid_col_margin {
-    margin-left: 250px;
+	margin-left: 20%;
 }
 
 .home__logo {
-    margin-bottom: 20px;
-    text-align: center;
+	margin-bottom: 20px;
+	text-align: center;
 }
 
 .home__form {
-    position: relative;
+	position: relative;
 }
 
 .search__icon {
-    position: absolute;
-    top: 17px;
-    left: 20px;
-    font-size: 20px;
-    color: #9aa0a6;
+	position: absolute;
+	top: 17px;
+	left: 20px;
+	font-size: 20px;
+	color: #9aa0a6;
 }
 
-
 .home__group {
-    margin-top: 15px;
-    width: 100%;
-    text-align: center;
+	margin-top: 15px;
+	/* width: 100; */
+	text-align: center;
 }
 
 .home__btn {
-    outline: none;
-    color: #5f6368;
-    background: #f2f2f2;
-    padding: 10px 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 3px;
+	outline: none;
+	color: #5f6368;
+	background: #f2f2f2;
+	padding: 10px 12px;
+	border: none;
+	cursor: pointer;
+	border-radius: 3px;
+}
+
+form.example input[type="text"] {
+	padding: 10px;
+	font-size: 17px;
+	border: 1px solid grey;
+	float: left;
+	width: 80%;
+	background: #f1f1f1;
+	border-radius: 10px 0 0 10px;
+}
+
+/* Style the submit button */
+form.example button {
+	float: left;
+	width: 20%;
+	padding: 10px;
+	background: #2196f3;
+	color: white;
+	font-size: 17px;
+	border: 1px solid grey;
+	border-left: none; /* Prevent double borders */
+	cursor: pointer;
+	border-radius: 0 10px 10px 0;
+}
+
+form.example button:hover {
+	background: #0b7dda;
+}
+
+/* Clear floats */
+form.example::after {
+	content: "";
+	clear: both;
+	display: table;
 }

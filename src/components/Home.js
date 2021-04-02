@@ -25,7 +25,7 @@ class Home extends Component {
   }
 
   CheckLogin = () => {
-    return fetch("http://localhost:3001/search/my_test_search/_doc?q=sm", {
+    return fetch("http://localhost:3001/search/my_test_search/_doc?q='${data}'", {
       method: "POST",
       headers: {
         Accept: "application/json",

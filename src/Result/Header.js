@@ -18,13 +18,29 @@ export default function Header(props) {
     setValue(String);
   }, [])
   
-  function toResult(string){
+  // function toResult(string){
 
-     props.history.push({  
-    pathname: '/result',
-    state: string,
-    });
+  //    props.history.push({  
+  //   pathname: '/result',
+  //   state: string,
+  //   });
+  //   // setValue(string);
+  // }
+
+  function toResult(string) {
+    if (string === "") {
+      console.log("No");
+      // setEmpty(true);
+      // return(<Alert variant="primary">Please enter the search text!!!</Alert>);
+      alert("Please enter search text!!");
+    } else {
+      props.history.push({
+        pathname: "/result",
+        state: string,
+      });
+    }
   }
+  
   return (
   
     <>

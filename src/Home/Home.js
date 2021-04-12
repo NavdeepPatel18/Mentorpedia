@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState , useEffect } from "react";
 
 import SearchBar from "material-ui-search-bar";
 import Header from "../Home/Header";
@@ -7,20 +7,17 @@ import logo from "../image/Logo.png";
 import { Alert } from "react-bootstrap";
 
 
-
 function Home(props) {
   const [value, setValue] = useState("");
   const [Empty, setEmpty] = useState(false);
 
   function toResult(string) {
-
-    if(string === ""){
+    if (string === "") {
       console.log("No");
       // setEmpty(true);
       // return(<Alert variant="primary">Please enter the search text!!!</Alert>);
       alert("Please enter search text!!");
-    }
-    else{
+    } else {
       props.history.push({
         pathname: "/result",
         state: string,
@@ -52,6 +49,7 @@ function Home(props) {
               onChange={(newValue) => setValue(newValue)}
               onRequestSearch={() => toResult(value)}
               cancelOnEscape
+              autoFocus
             />
           </div>
 
@@ -60,7 +58,6 @@ function Home(props) {
       </main>
     </>
   );
-
 }
 
 export default Home;

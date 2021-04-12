@@ -1,0 +1,10 @@
+.card {
+  width: "80%";
+  border-color: black;
+  border-width: 10px;
+  height: "30%";
+}
+
+.name {
+  color: blue;
+}

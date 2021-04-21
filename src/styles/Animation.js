@@ -1,11 +1,7 @@
-import { Box, BoxProps, Grow } from "@material-ui/core";
+import { Box, Grow } from "@material-ui/core";
 import React from "react";
 
-export interface AnimationProps extends BoxProps {
-  interval?: number;
-}
-
-export function Animation(props: AnimationProps) {
+export function Animation(props) {
   const { interval = 200, children, ...rest } = props;
 
   return (

@@ -5,8 +5,11 @@ export default function FooterSmall(props) {
     <>
       <footer
         className={
-          (props.absolute ? "absolute w-full bottom-0 " : "relative") +
-          " pb-6"
+          (props.absolute === "1"
+            ? "absolute w-full bottom-0 ml-4"
+            : props.absolute === "2"
+            ? "absolute w-full bottom-0"
+            : "relative") + " pb-6"
         }
       >
         <div className="mx-auto px-4" style={{ height: "40px" }}>

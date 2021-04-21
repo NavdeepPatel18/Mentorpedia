@@ -1,39 +1,10 @@
-import { useEffect, useState } from "react";
-// import "./card.css";
 import { Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { GlassCard } from "../styles/GlassCard";
+import "../styles/card.css";
 import logo from "../image/Logo.png";
 import { Grow } from "@material-ui/core";
 
 export default function Cards({ data, key }) {
-  const [positions, setPositions] = useState([]);
-  const [researchAreas, setResearchAreas] = useState([]);
-  // const [posEmpty, setPosEmpty] = useState(true);
-  // const [researchEmpty, setResearchEmpty] = useState(true);
-
-  useEffect(() => {
-    setPositions(data.position.split(","));
-    setResearchAreas(data.research_areas.split(","));
-    // async function setData() {
-    //   setPositions(data.position.split(","));
-    //   setResearchAreas(data.research_areas.split(","));
-
-    //   if (positions.length == 0) {
-    //     setPosEmpty(false);
-    //   }
-
-    //   console.log(data.name, "ff");
-    //   console.log(researchAreas.length, researchAreas);
-    //   console.log(positions.length, positions);
-    //   if (researchAreas.length == 0) {
-    //     setResearchEmpty(false);
-    //   }
-    // }
-
-    // setData();
-  }, []);
-
   return (
     <>
       <Grow in>
@@ -73,7 +44,6 @@ export default function Cards({ data, key }) {
                   <Card.Img
                     style={{
                       width: "130px",
-                      //   float: "left",
 
                       //border
                       borderLeft: "solid 2px rgba(255, 255, 255,0.1)",
@@ -82,9 +52,8 @@ export default function Cards({ data, key }) {
                       borderRight: "0px",
                       boxShadow: "10px 10px 10px rgba(30, 30, 30, 0.3)",
                     }}
-                    src={data.image}
+                    src={data._source["image"]}
                     onError={(event) => {
-                      // If src points to any non-image url
                       event.target.src = logo;
                     }}
                   />
@@ -94,7 +63,7 @@ export default function Cards({ data, key }) {
                 <Card.Title
                   style={{ fontSize: "30px", color: "white", marginTop: "5px" }}
                 >
-                  {data.name}
+                  {data._source["name"]}
                 </Card.Title>
 
                 {/* Position */}
@@ -103,15 +72,15 @@ export default function Cards({ data, key }) {
                   Position:
                 </span>
                 <div
-                  className="col-sm-8"
+                  className="col-sm-8 positions"
                   style={{
                     maxHeight: "150px",
                     overflowY: "auto",
                     color: "white",
                   }}
                 >
-                  {positions[0] != ""
-                    ? positions.map((pos, index) => {
+                  {data._source["position"][0] !== null
+                    ? data._source["position"].map((pos, index) => {
                         return <ul key={index}>{pos}</ul>;
                       })
                     : "Information not available!"}
@@ -129,22 +98,26 @@ export default function Cards({ data, key }) {
                       style={{ width: "auto", marginLeft: "15px" }}
                     >
                       Email :{" "}
-                      {data.email != "" ? data.email : "No data available!"}
+                      {data._source["email"] !== null
+                        ? data._source["email"]
+                        : "No data available!"}
                       <br />
                       Phone :{" "}
-                      {data.phone != "" ? data.phone : "No data available!"}
+                      {data._source["phone"] !== null
+                        ? data._source["phone"]
+                        : "No data available!"}
                       <br />
                       Website:{" "}
                       <a
                         href={
-                          data.website != ""
-                            ? data.website
+                          data._source["website"] !== null
+                            ? data._source["website"]
                             : "No data available!"
                         }
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {data.website}
+                        {data._source["website"]}
                       </a>
                     </div>
                   </Card.Text>
@@ -157,16 +130,15 @@ export default function Cards({ data, key }) {
                     Research Areas:
                   </span>
                   <div
-                    className="col-sm-8"
+                    className="col-sm-8 r_areas"
                     style={{
                       maxHeight: "150px",
                       overflowY: "auto",
                       color: "white",
                     }}
                   >
-                    {researchAreas[0] != ""
-                      ? researchAreas.map((r_area, index) => {
-                          console.log(researchAreas);
+                    {data._source["research_areas"][0] !== null
+                      ? data._source["research_areas"].map((r_area, index) => {
                           return <ul key={index}>{r_area}</ul>;
                         })
                       : "Information not available!"}

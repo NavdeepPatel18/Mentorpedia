@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import SearchBar from "material-ui-search-bar";
-import Header from "../Home/Header";
-import Footer from "../Home/Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import logo from "../image/Logo.png";
 import { Alert } from "react-bootstrap";
-import { Animation } from "../styles/Animation.tsx";
+import { Animation } from "../styles/Animation.js";
 
 function Home(props) {
   const [value, setValue] = useState("");
@@ -19,9 +19,6 @@ function Home(props) {
       setTimeout(() => {
         setShow(false);
       }, 5000);
-
-      // return(<Alert variant="primary">Please enter the search text!!!</Alert>);
-      // alert("Please enter search text!!");
     } else {
       props.history.push({
         pathname: "/result",
@@ -56,19 +53,16 @@ function Home(props) {
               />
 
               <SearchBar
-                placeholder="Search by name,university and technology,"
+                placeholder="Search by name or technology"
                 value={value}
                 onChange={(newValue) => setValue(newValue)}
                 onRequestSearch={() => toResult(value)}
-                // searchIcon={
-                //   <SearchIcon className="absolute" style={{ color: "blue" }} />
-                // }
                 cancelOnEscape
               />
             </Animation>
           </div>
 
-          <Footer absolute />
+          <Footer absolute="1" />
         </section>
       </main>
     </>

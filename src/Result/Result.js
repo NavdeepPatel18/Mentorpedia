@@ -21,13 +21,13 @@ function Result(props) {
       .then((response) => response.json())
       .then((result) => {
         setLoading(false);
-        setData(result.hits);
-        console.log(result.hits);
+        setData(result.data);
+        console.log(result.data);
 
         const temp = [];
-        for (var i = 0; i < result.hits.length; i++) {
-          for (var j = 0;j < result.hits[i]._source["research_areas"].length;j++) {
-            temp.push(result.hits[i]._source["research_areas"][j]);
+        for (var i = 0; i < result.data.length; i++) {
+          for (var j = 0;j < result.data[i]._source["research_areas"].length;j++) {
+            temp.push(result.data[i]._source["research_areas"][j]);
           }
         }
 

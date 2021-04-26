@@ -13,7 +13,6 @@ function Home(props) {
 
   function toResult(string) {
     if (string === "") {
-      console.log("No");
       setShow(true);
 
       setTimeout(() => {

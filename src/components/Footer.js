@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function FooterSmall(props) {
   return (
@@ -22,8 +23,10 @@ export default function FooterSmall(props) {
             </div>
 
             <div className="w-full md:w-4/12 px-4">
-              <div className="text-sm text-gray-600 font-semibold py-1 text-center md:text-left">
-                About Us
+              <div className="text-sm font-semibold py-1 text-center md:text-left">
+                <Link className="text-gray-600" to="/aboutUs">
+                  About Us
+                </Link>
               </div>
             </div>
           </div>

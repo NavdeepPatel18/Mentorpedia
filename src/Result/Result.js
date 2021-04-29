@@ -24,6 +24,7 @@ function Result(props) {
     fetch("http://localhost:3001/search_csv?q=" + searchString)
       .then((response) => response.json())
       .then((result) => {
+        
         setData(result.data);
         setLoading(false);
       })

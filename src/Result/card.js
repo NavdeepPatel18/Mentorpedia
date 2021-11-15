@@ -66,6 +66,13 @@ export default function Cards({ data, key }) {
                   {data._source["name"]}
                 </Card.Title>
 
+                <span style={{ fontWeight: "bold", color: "white" }}>
+                  {data._source["college"]}
+                  <br/>
+                  {data._source["dept"]}
+                  <br/>
+                </span>
+
                 {/* Position */}
 
                 <span style={{ fontWeight: "bold", color: "darkblue" }}>

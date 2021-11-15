@@ -52,7 +52,7 @@ function Home(props) {
               />
 
               <SearchBar
-                placeholder="Search by name or technology"
+                placeholder="Search by Name, University, Department or Technology"
                 value={value}
                 onChange={(newValue) => setValue(newValue)}
                 onRequestSearch={() => toResult(value)}

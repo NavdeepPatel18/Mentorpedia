@@ -24,9 +24,14 @@ function Result(props) {
     fetch("http://localhost:3001/search_csv?q=" + searchString)
       .then((response) => response.json())
       .then((result) => {
+        if (Object.keys(result).length !== 0) {
+          setData(result.data);
+          setLoading(false);
+        } else {
+          setError(true);
+          setLoading(false);
+        }
         
-        setData(result.data);
-        setLoading(false);
       })
       .catch((e) => {
         setLoading(false);
@@ -69,7 +74,7 @@ function Result(props) {
 
               <SearchBar
                 className="col-sm-9"
-                placeholder="Search by name or technology"
+                placeholder="Search by Name, University, Department or Technology"
                 value={value}
                 onChange={(newValue) => setValue(newValue)}
                 onRequestSearch={() => setSearchString(value)}
